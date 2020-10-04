@@ -10,20 +10,15 @@ def find_item_by_name_in_collection(name, collection)
 end
 
 
-
 def consolidate_cart(cart)
-  new_cart = cart.uniq { |item_hash| item_hash[:item]}
-  new_cart.map do |new_item_hash|
-    new_item_hash[:count] = 1
-  end
-  item_count = []
+  new_cart = []
   cart.each do |item_hash|
-    item_count << item_hash[:item]
-end
-counts = Hash.new(0)
+      new_cart << item_hash
+  end
+  new_cart.each do |new_item_hash|
+    new_item_hash[:count] = new_item_hash[:item].count
+  end
 
-item_count.each do |name|
-    counts[name] += 1
 end
 
 new_cart.each do |item_hash|
@@ -37,8 +32,3 @@ end
   new_cart
 end
 
-
-#count any duplicates
-
-
-  
